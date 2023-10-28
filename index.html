@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>todos</title>
+        <link rel="stylesheet" href="./styles.css">
+        <script src="https://kit.fontawesome.com/bff5048a88.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    </head>
+
+    <body>
+        <main class="container">
+
+            <div class="todos">
+                <header>
+                    <h1>todos</h1>
+                    <span><i class="fa-solid fa-clipboard-list"></i></span>
+                    <h2>Add your first todo</h2>
+                    <p>What do you want to get done today?</p>
+                    <button id="create"><i class="fa-solid fa-plus"></i></button>
+                </header>
+
+                <div class="todo-list" id="list">
+                    <div class="item">
+
+                        <input type="checkbox" />
+                        <input type="text" value="e.g. go to the gym" disabled />
+
+                        <div class="actions">
+
+                            <button class="FA-icons edit-btn">
+                                <i class='fa fa-pen'></i>
+                            </button>
+
+                            <button class="FA-icons remove-btn">
+                                <i class='fa fa-circle-minus'></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <script src="./dom.js"></script>
+    </body>
+
+</html>
