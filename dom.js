@@ -1,16 +1,18 @@
 const listEl = document.getElementById("list");
-const create_btn_el = document.getElementById("create"); 
+const create_btn_el = document.getElementById("create");
+const themeToggleBtn = document.getElementById("theme-toggle");
 
 let todos = [];
 
 create_btn_el.addEventListener("click", CreateNewTodo);
+themeToggleBtn.addEventListener("click", toggleTheme);
 
-function CreateNewTodo () {
+function CreateNewTodo() {
     const item = {
         id: new Date().getTime(),
         text: "",
         complete: false
-    }
+    };
 
     todos.unshift(item);
 
@@ -26,7 +28,7 @@ function CreateNewTodo () {
 
 function createTodoElement(item) {
     const itemEl = document.createElement('div');
-    itemEl.classList.add("item")
+    itemEl.classList.add("item");
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -46,20 +48,20 @@ function createTodoElement(item) {
 
     const edit_btn_el = document.createElement("button");
     edit_btn_el.classList.add("FA-icons", "edit-btn");
-    edit_btn_el.innerHTML = "<i class='fa fa-pen'></i>"
-    
+    edit_btn_el.innerHTML = "<i class='fa fa-pen'></i>";
+
     const remove_btn_el = document.createElement("button");
-    edit_btn_el.classList.add("FA-icons", "remove-btn");
+    remove_btn_el.classList.add("FA-icons", "remove-btn");
     remove_btn_el.innerHTML = "<i class='fa fa-circle-minus'></i>";
 
     actionsEl.append(edit_btn_el);
     actionsEl.append(remove_btn_el);
-    
+
     itemEl.append(checkbox);
     itemEl.append(inputEl);
     itemEl.append(actionsEl);
 
-    // MY EVENTS
+    // Event Listeners
     checkbox.addEventListener("change", () => {
         item.complete = checkbox.checked;
 
@@ -92,34 +94,79 @@ function createTodoElement(item) {
         itemEl.remove();
 
         save();
-    })
+    });
 
-    return {itemEl, inputEl, edit_btn_el, remove_btn_el };
+    return { itemEl, inputEl, edit_btn_el, remove_btn_el };
 }
 
-function DisplayTodos(){
-    load ();
+function DisplayTodos() {
+    load();
 
-    for (let i = 0; i < todos.length; i++) {
-        const item = todos[i];
+    const fragment = document.createDocumentFragment();
 
+    todos.forEach(item => {
         const { itemEl } = createTodoElement(item);
+        fragment.appendChild(itemEl);
+    });
 
-        listEl.append(itemEl);
-    }
+    listEl.appendChild(fragment);
 }
 
 DisplayTodos();
 
 function save() {
-    const save = JSON.stringify(todos);
-
-    localStorage.setItem("my_todos", save);
+    try {
+        const save = JSON.stringify(todos);
+        localStorage.setItem("my_todos", save);
+    } catch (error) {
+        console.error("Error saving to localStorage", error);
+    }
 }
 
 function load() {
-    const data = localStorage.getItem("my_todos");
-    if (data) {
-        todos = JSON.parse(data);
+    try {
+        const data = localStorage.getItem("my_todos");
+        if (data) {
+            todos = JSON.parse(data);
+        }
+    } catch (error) {
+        console.error("Error loading from localStorage", error);
     }
 }
+
+function toggleTheme() {
+    document.body.classList.toggle("dark-theme");
+}
+
+// CSS for responsiveness and themes
+const style = document.createElement('style');
+style.innerHTML = `
+    .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+    .dark-theme {
+        background-color: #333;
+        color: #fff;
+    }
+    .dark-theme .item {
+        border-bottom: 1px solid #555;
+    }
+    @media (max-width: 600px) {
+        .item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .actions {
+            margin-top: 10px;
+        }
+    }
+`;
+document.head.appendChild(style);

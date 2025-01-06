@@ -1,51 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>todos</title>
-        <link rel="stylesheet" href="./styles.css">
-        <script src="https://kit.fontawesome.com/bff5048a88.js" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://kit.fontawesome.com/bff5048a88.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
 
-    <body>
-        <main class="container">
+<body>
+    <main class="container">
+        <section class="todos">
+            <header>
+                <h1>Todos</h1>
+                <span><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i></span>
+                <h2>Add your first todo</h2>
+                <p>What do you want to get done today?</p>
+                <button id="create" aria-label="Create new todo"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>
+            </header>
 
-            <div class="todos">
-                <header>
-                    <h1>todos</h1>
-                    <span><i class="fa-solid fa-clipboard-list"></i></span>
-                    <h2>Add your first todo</h2>
-                    <p>What do you want to get done today?</p>
-                    <button id="create"><i class="fa-solid fa-plus"></i></button>
-                </header>
-
-                <div class="todo-list" id="list">
-                    <div class="item">
-
-                        <input type="checkbox" />
-                        <input type="text" value="e.g. go to the gym" disabled />
-
-                        <div class="actions">
-
-                            <button class="FA-icons edit-btn">
-                                <i class='fa fa-pen'></i>
-                            </button>
-
-                            <button class="FA-icons remove-btn">
-                                <i class='fa fa-circle-minus'></i>
-                            </button>
-
-                        </div>
-
+            <div class="todo-list" id="list">
+                <article class="item">
+                    <input type="checkbox" aria-label="Mark todo as complete" />
+                    <input type="text" value="e.g. go to the gym" disabled aria-label="Todo description" />
+                    <div class="actions">
+                        <button class="FA-icons edit-btn" aria-label="Edit todo">
+                            <i class='fa fa-pen' aria-hidden="true"></i>
+                        </button>
+                        <button class="FA-icons remove-btn" aria-label="Remove todo">
+                            <i class='fa fa-circle-minus' aria-hidden="true"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
             </div>
-
-        </main>
-        <script src="./dom.js"></script>
-    </body>
+        </section>
+    </main>
+    <script src="./dom.js"></script>
+</body>
 
 </html>
