@@ -1,160 +1,255 @@
+:root {
+    --background-color: rgb(56, 52, 52);
+    --text-color: whitesmoke;
+    --header-color: rgb(255, 255, 255);
+    --subheader-color: rgb(173, 173, 182);
+    --paragraph-color: rgb(161, 206, 196);
+    --button-color: rgb(89, 177, 89);
+    --item-bg-color: black;
+    --item-border-color: rgb(211, 208, 12);
+    --complete-color: blue;
+    --remove-btn-color: rgb(248, 5, 5);
+    --edit-btn-color: rgb(62, 248, 5);
+}
 
-*{
+body.light-theme {
+    --background-color: rgb(255, 255, 255);
+    --text-color: rgb(0, 0, 0);
+    --header-color: rgb(0, 0, 0);
+    --subheader-color: rgb(80, 80, 80);
+    --paragraph-color: rgb(60, 60, 60);
+    --button-color: rgb(0, 123, 255);
+    --item-bg-color: rgb(240, 240, 240);
+    --item-border-color: rgb(200, 200, 200);
+    --complete-color: rgb(0, 0, 255);
+    --remove-btn-color: rgb(255, 0, 0);
+    --edit-btn-color: rgb(0, 255, 0);
+}
+
+* {
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
 }
+
 body {
-    background-color: rgb(56, 52, 52);
+    background-color: var(--background-color);
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-main{
+main {
     height: 100vh;
     display: flex;
     justify-content: center;
-    padding: center;
+    align-items: center;
+    padding: 1rem;
 }
 
 .container .todos header span i {
     appearance: none;
-    appearance: none;
     background: none;
     border: none;
     outline: none;
-    font-size: 10rem;
+    font-size: 3rem;
     margin-bottom: 0.1rem;
-    color: whitesmoke;
+    color: var(--text-color);
 }
 
-.todos{
+.todos {
     width: 100%;
     max-width: 770px;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
 }
 
-.todos header{
+.todos header {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 0.6rem;
-}
-.todos header h1{
-    color: rgb(255, 255, 255);
-    text-align: center;
-    font-size: 8rem;
-    font-family: arial;
-    font-weight: 900;
-    margin-top: -2.5rem;
-    margin-bottom: -0.2rem;
+    margin-bottom: 1rem;
 }
 
-.container .todos header h2{
-    color: rgb(173, 173, 182);
+.todos header h1 {
+    color: var(--header-color);
+    text-align: center;
     font-size: 2rem;
-    border: none;
     font-weight: 900;
-    font-family: arial;
-    margin-bottom: 0.2rem;
+    margin: 0;
+    position: relative;
 }
-.container .todos header p{
-    color:rgb(161, 206, 196);
-    font-size: 1.3rem;
-    font-family: 'Times New Roman';
-    margin-top: -0.2rem;
+
+.todos header h1::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: var(--header-color);
+    margin: 0.5rem auto 0;
+}
+
+.container .todos header h2 {
+    color: var(--subheader-color);
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 0.5rem 0;
+}
+
+.container .todos header p {
+    color: var(--paragraph-color);
+    font-size: 1rem;
+    margin: 0.5rem 0;
     transition: 0.5s;
 }
 
 .todos header button {
     display: flex;
     flex-direction: row;
-    color: rgb(89, 177, 89);
-    font-size: 2rem;
+    color: var(--button-color);
+    font-size: 1rem;
     background: none;
     border: none;
     outline: none;
     cursor: pointer;
     font-weight: 800;
     transition: 0.5s;
-    animation:  3s linear 1s slidein;;
-
 }
-.item{
+
+.item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.6rem;
-    background-color: black;
+    background-color: var(--item-bg-color);
     margin-bottom: 1rem;
     border-radius: 1rem;
     transition: 1s;
-
 }
-.item:last-of-type{
+
+.item:last-of-type {
     margin-bottom: 0;
+}
 
-}
 .item input[type="checkbox"] {
-    margin-right: 2rem;
+    margin-right: 1rem;
 }
+
 .item input[type="text"] {
     appearance: none;
     background: none;
     border: none;
     outline: none;
-    color: rgb(241, 231, 231);
-    font-size: 21px;
-    flex: 1 1 0%;
+    color: var(--text-color);
+    font-size: 1rem;
+    flex: 1;
     margin-right: 1rem;
 }
-.item input[type="text"]:not(:disabled) {
-    border-bottom: 3px solid rgb(211, 208, 12);
-}
 
-item.complete:not(:enabled) {
-    color: blue;
+.item input[type="text"]:not(:disabled) {
+    border-bottom: 2px solid var(--item-border-color);
 }
 
 .item.complete {
     opacity: 0.4;
 }
+
 .item.complete input[type="text"] {
     text-decoration: line-through;
 }
+
 .item:hover,
 .item:focus-within {
-    outline: 2px solid rgb(0, 0, 0);
+    outline: 2px solid var(--item-border-color);
 }
 
 .actions button {
-    color: rgb(32, 224, 7);
+    color: var(--button-color);
     margin-right: 1rem;
     opacity: 0.8;
-    transform: 0.2s;
+    transition: 0.2s;
     appearance: none;
     background: none;
     border: none;
     outline: none;
     cursor: pointer;
 }
+
 .actions button i {
-    font-size: 1.3rem;
+    font-size: 1rem;
     appearance: none;
     border: none;
-
 }
+
 .actions button.remove-btn {
-    color: rgb(248, 5, 5);
-
+    color: var(--remove-btn-color);
 }
-.actions button.edit-btn {
-    color: rgb(62, 248, 5);
 
+.actions button.edit-btn {
+    color: var(--edit-btn-color);
 }
 
 .actions button:hover {
-    opacity: 2;
+    opacity: 1;
 }
 
-.actions button:last-of-type{
+.actions button:last-of-type {
     margin-right: 0;
+}
+
+@media (max-width: 768px) {
+    .todos header h1 {
+        font-size: 1.5rem;
+    }
+
+    .container .todos header h2 {
+        font-size: 1.2rem;
+    }
+
+    .container .todos header p {
+        font-size: 0.9rem;
+    }
+
+    .todos header button {
+        font-size: 0.9rem;
+    }
+
+    .item input[type="text"] {
+        font-size: 0.9rem;
+    }
+
+    .actions button i {
+        font-size: 0.9rem;
+    }
+}
+
+/* Accessibility Features */
+body {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.todos header h1,
+.container .todos header h2,
+.container .todos header p {
+    font-size: 1.2rem;
+}
+
+.todos header button {
+    font-size: 1rem;
+}
+
+.item input[type="text"] {
+    font-size: 1rem;
+}
+
+.actions button i {
+    font-size: 1rem;
+}
+
+.todos header button:focus,
+.actions button:focus {
+    outline: 2px solid var(--button-color);
+    outline-offset: 2px;
 }
